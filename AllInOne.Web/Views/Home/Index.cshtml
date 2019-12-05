@@ -1,0 +1,46 @@
+﻿<div class="jumbotron">
+    <h1>Azure AD MVC All-In-One Sample App</h1>
+    <p class="lead">Demonstrates an ASP.Net MVC app secured by Azure Active Directory that calls an ASP.Net WebAPI located in the same project. A simple call is also made to the Azure AD Graph API to retrieve basic user profile information.</p>
+    <p>All security operations are handled using the OWIN OpenIdConnect middleware (MVC) provided by Microsoft.</p>
+</div>
+<p>
+    <h3>My Claims</h3>
+    <ul>
+        @foreach (string claim in ViewBag.Claims)
+        {
+            <li>@claim</li>
+        }
+    </ul>
+</p>
+<p>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <button id="btnCallWebAPI" name="btnCallWebAPI">Call WebAPI</button>
+    }
+</p>
+@if (ViewBag.WebAPIClaims != null)
+{
+    <p>
+        <h3>WebAPI Claims</h3>
+        <ul>
+            @foreach (string claim in ViewBag.WebAPIClaims)
+            {
+                <li>@claim</li>
+            }
+        </ul>
+    </p>
+}
+
+@if (ViewBag.Results != null)
+{
+    <p>
+        <h3>Azure AD Graph Properties</h3>
+        <ul>
+            @foreach (string property in ViewBag.Results)
+            {
+                <li>@property</li>
+            }
+        </ul>
+    </p>
+}
